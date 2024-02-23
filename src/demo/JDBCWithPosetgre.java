@@ -7,12 +7,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-public class Test {
-
+public class JDBCWithPosetgre {
 	public static void main(String[] args) throws Exception {
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/testdb", "root", "Shubh@m1994");
+			Class.forName("org.postgresql.Driver");
+			Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/testdb", "postgres", "Postgre@123");
 			System.out.println("Database connected");
 			PreparedStatement pstmt = null;
 			ResultSet rs = null;
@@ -32,7 +31,7 @@ public class Test {
 			case 2:
 				System.out.println("Enter Customer ID to delete:");
 				int id = scanner.nextInt();
-				//con.setAutoCommit(false);
+				// con.setAutoCommit(false);
 				String deleteQuery = "delete from Customer where id='" + id + "' ";
 				pstmt = con.prepareStatement(deleteQuery);
 				pstmt.executeUpdate();
